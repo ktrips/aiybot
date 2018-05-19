@@ -1,0 +1,11 @@
+Description=Push to Robot Jp
+
+[Service]
+ExecStart=/bin/bash /home/pi/AIY-projects-python/src/robot/AIY-pushtorobot-jp.sh
+WorkingDirectory=/home/pi/AIY-projects-python/
+Restart=always
+User=pi
+
+[Install]
+WantedBy=multi-user.target
+

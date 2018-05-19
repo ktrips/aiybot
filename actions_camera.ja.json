@@ -1,0 +1,79 @@
+{
+    "locale": "ja",
+    "manifest": {
+        "displayName": "Pi-Camera",
+        "invocationName": "Pi Camera",
+        "category": "PRODUCTIVITY"
+    },
+    "actions": [
+        {
+            "name": "com.acme.actions.pi_camera",
+            "availability": {
+                "deviceClasses": [
+                    {
+                        "assistantSdkDevice": {}
+                    }
+                ]
+            },
+            "intent": {
+                "name": "com.acme.intents.pi_camera",
+                "parameters": [
+                    {
+                        "name": "number",
+                        "type": "SchemaOrg_Number"
+                    },
+                    {
+                        "name": "camera_target",
+                        "type": "CameraType"
+                    }
+                ],
+                "trigger": {
+                    "queryPatterns": [
+                        "$CameraType:camera_target を撮って"
+                    ]
+                }
+            },
+            "fulfillment": {
+                "staticFulfillment": {
+                    "templatedResponse": {
+                        "items": [
+                            {
+                                "simpleResponse": {
+                                    "textToSpeech": "$camera_target.raw を撮ります！カシャ！！"
+                                }
+                            },
+                            {
+                                "deviceExecution": {
+                                    "command": "com.acme.commands.pi_camera",
+                                    "params": {
+                                        "cameraKey": "$camera_target",
+                                        "number": "$number"
+                                    }
+                                }
+                            }
+                        ]
+                    }
+                }
+            }
+        }
+    ],
+    "types": [
+        {
+            "name": "$CameraType",
+            "entities": [
+                {
+                    "key": "CAMERA",
+                    "synonyms": [
+                        "写真",
+                        "フォト",
+                        "画像",
+                        "ビデオ",
+			"ムービー",
+			"動画"
+                    ]
+                }
+            ]
+        }
+    ]
+}
+

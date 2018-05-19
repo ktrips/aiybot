@@ -1,0 +1,78 @@
+{
+    "locale": "en",
+    "manifest": {
+        "displayName": "Pi-Motor",
+        "invocationName": "Pi Motor",
+        "category": "PRODUCTIVITY"
+    },
+    "actions": [
+        {
+            "name": "com.acme.actions.pi_motor",
+            "availability": {
+                "deviceClasses": [
+                    {
+                        "assistantSdkDevice": {}
+                    }
+                ]
+            },
+            "intent": {
+                "name": "com.acme.intents.pi_motor",
+                "parameters": [
+                    {
+                        "name": "number",
+                        "type": "SchemaOrg_Number"
+                    },
+                    {
+                        "name": "direction_target",
+                        "type": "DirectionType"
+                    }
+                ],
+                "trigger": {
+                    "queryPatterns": [
+                        "Come $DirectionType:direction_target"
+                    ]
+                }
+            },
+            "fulfillment": {
+                "staticFulfillment": {
+                    "templatedResponse": {
+                        "items": [
+                            {
+                                "simpleResponse": {
+                                    "textToSpeech": "Coming $direction_target.raw"
+                                }
+                            },
+                            {
+                                "deviceExecution": {
+                                    "command": "com.acme.commands.pi_motor",
+                                    "params": {
+                                        "cameraKey": "$direction_target",
+                                        "number": "$number"
+                                    }
+                                }
+                            }
+                        ]
+                    }
+                }
+            }
+        }
+    ],
+    "types": [
+        {
+            "name": "$DirectionType",
+            "entities": [
+                {
+                    "key": "DIRECTION",
+                    "synonyms": [
+                        "here",
+                        "there",
+                        "over there",
+			"now",
+			"on"
+                    ]
+                }
+            ]
+        }
+    ]
+}
+
