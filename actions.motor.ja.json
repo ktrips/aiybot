@@ -29,7 +29,7 @@
             	],
             	"trigger": {
                 	"queryPatterns": [
-                    	"$DirectionType:direction_target 動いて" ーーー ①
+                    	"$DirectionType:direction_target 動いて"
                 	]
             	}
         	},
@@ -39,7 +39,7 @@
                     	"items": [
                         	{
                             	"simpleResponse": {
-                                	"textToSpeech": "$direction_target.raw に動きます！" ーーー ②
+                                	"textToSpeech": "$direction_target.raw に動きます！"
                             	}
                              },
                                 
@@ -64,7 +64,7 @@
             	{
                 	"key": "DIRECTION",
                 	"synonyms": [
-                    	"前", ーーー ③
+                    	"前",
                     	"後",
                     	"後ろ",
                     	"右",
